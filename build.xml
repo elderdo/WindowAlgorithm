@@ -1,0 +1,36 @@
+<project>
+    <property name="lib.dir"     value="lib"/>
+
+    <path id="classpath">
+	    <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes" classpathref="classpath"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/WindowAlgo.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="Users"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="build/jar/WindowAlgo.jar" fork="true"/>
+    </target>
+
+  <target name="getlatest">
+	  <pvcs repository="/W/pds" pvcsproject="/sds-amd/WindowAlgorithm"/>
+  </target>
+
+</project>
+
+
